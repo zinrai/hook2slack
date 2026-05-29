@@ -1,0 +1,33 @@
+{{- /*
+  Renders one Slack attachment from a generic notification payload.
+
+  Demonstrates the building blocks of a hook2slack template:
+    - reading top-level fields with {{ .field }}
+    - selecting a value based on input with if/else
+    - embedding strings with the json function (which adds the JSON quoting and escaping)
+    - conditionally including a section with {{ with }}
+*/ -}}
+
+{{- $color := "#439FE0" -}}
+{{- if eq .level "error" -}}{{- $color = "danger" -}}
+{{- else if eq .level "warning" -}}{{- $color = "warning" -}}
+{{- end -}}
+
+{
+  "color": {{ $color | json }},
+  "title": {{ .title | json }}
+  {{- with .body -}}
+  ,
+  "text": {{ . | json }}
+  {{- end -}}
+  {{- with .url -}}
+  ,
+  "actions": [
+    {
+      "type": "button",
+      "text": "Open",
+      "url": {{ . | json }}
+    }
+  ]
+  {{- end }}
+}

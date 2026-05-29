@@ -1,0 +1,7 @@
+listen: ":9101"
+schema_file: /etc/hook2slack/schema.json
+template_file: /etc/hook2slack/template.tmpl
+endpoints:
+  - path: /webhooks/default
+    slack:
+      url_file: /etc/hook2slack/slack.url
