@@ -9,12 +9,6 @@ a template).
 
 For non-goals and design rationale, see [DESIGN.md](DESIGN.md).
 
-## Install
-
-```
-go install github.com/zinrai/hook2slack@latest
-```
-
 ## Subcommands
 
 | Subcommand | Purpose |
